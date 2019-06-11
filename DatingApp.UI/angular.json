@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DatingApp": {
+    "DatingApp-UI": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/DatingApp",
+            "outputPath": "dist/DatingApp-UI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "DatingApp:build"
+            "browserTarget": "DatingApp-UI:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "DatingApp:build:production"
+              "browserTarget": "DatingApp-UI:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DatingApp:build"
+            "browserTarget": "DatingApp-UI:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "DatingApp-e2e": {
+    "DatingApp-UI-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "DatingApp:serve"
+            "devServerTarget": "DatingApp-UI:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "DatingApp:serve:production"
+              "devServerTarget": "DatingApp-UI:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "DatingApp"
+  "defaultProject": "DatingApp-UI"
 }
