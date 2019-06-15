@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +27,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [
     ErrorInterceptorProvider,
-    AuthService
+    AuthService,
+    AlertifyService
   ],
   bootstrap: [AppComponent]
 })
