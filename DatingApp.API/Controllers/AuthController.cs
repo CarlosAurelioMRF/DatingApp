@@ -1,7 +1,6 @@
 ﻿using DatingApp.API.Dtos;
 using DatingApp.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace DatingApp.API.Controllers
@@ -20,45 +19,31 @@ namespace DatingApp.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegister)
         {
-            try
-            {
-                var createdUser = await _authService.Register(userForRegister);
+            var createdUser = await _authService.Register(userForRegister);
 
-                if (createdUser == null)
-                    return BadRequest(new { sucesso = false, mensagem = "Usuário já existe" });
+            if (createdUser == null)
+                return BadRequest(new { sucesso = false, mensagem = "Usuário já existe" });
 
-                return Created(createdUser.Id, 
-                    new {
-                        sucesso = true,
-                        mensagem = "Operação realizada com sucesso"
-                    });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { sucesso = false, erro = ex.Message });
-            }
+            return Created(createdUser.Id, 
+                new {
+                    sucesso = true,
+                    mensagem = "Operação realizada com sucesso"
+                });
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLogin)
         {
-            try
-            {
-                var token = await _authService.Login(userForLogin);
+            var token = await _authService.Login(userForLogin);
 
-                if (token == null)
-                    return Unauthorized();
+            if (token == null)
+                return Unauthorized();
 
-                return Ok(new
-                {
-                    sucesso = true,
-                    token
-                });
-            }
-            catch (Exception ex)
+            return Ok(new
             {
-                return BadRequest(new { sucesso = false, erro = ex.Message });
-            }
+                sucesso = true,
+                token
+            });
         }
     }
 }
