@@ -6,13 +6,13 @@ import { AuthService } from '../_services/auth.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styles: []
+  styleUrls: ['./nav.component.scss']
 })
 export class NavigationComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService, private alertifyService: AlertifyService) { }
+  constructor(public authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -26,8 +26,7 @@ export class NavigationComponent implements OnInit {
   }
 
   loggedIn(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout(): void {

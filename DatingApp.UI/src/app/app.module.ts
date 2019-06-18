@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
@@ -23,7 +24,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     ErrorInterceptorProvider,
