@@ -9,7 +9,6 @@ import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -19,7 +18,8 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
       { path: 'lists', component: ListsComponent },
     ]
-  }
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

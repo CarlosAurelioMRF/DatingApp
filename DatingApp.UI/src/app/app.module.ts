@@ -7,14 +7,15 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { UserService } from './_services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ListsComponent } from './lists/lists.component';
+import { MemberListComponent } from './member-list/member-list.component';
+import { MessagesComponent } from './messages/messages.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RegisterComponent } from './register/register.component';
-import { MemberListComponent } from './member-list/member-list.component';
-import { ListsComponent } from './lists/lists.component';
-import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,9 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   providers: [
     ErrorInterceptorProvider,
+    AlertifyService,
     AuthService,
-    AlertifyService
+    UserService
   ],
   bootstrap: [AppComponent]
 })
