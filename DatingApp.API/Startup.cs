@@ -1,4 +1,5 @@
-﻿using DatingApp.API.Data;
+﻿using AutoMapper;
+using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using DatingApp.API.Models;
 using DatingApp.API.Models.UserAgg.Repository;
@@ -40,14 +41,25 @@ namespace DatingApp.API
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSingleton<ValueService>();
-
             #region Authorization
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             #endregion
 
+            #region Service
+            services.AddScoped<IUserService, UserService>();
+            #endregion
+
+            #region Repository
+            services.AddScoped<IUserRepository, UserRepository>();
+            #endregion
+
             services.AddCors();
+
+            services.AddAutoMapper();
+
+            // Criando dados iniciais
+            services.AddTransient<Seed>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -64,7 +76,7 @@ namespace DatingApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             app.UseExceptionHandler(builder => {
                 builder.Run(async context =>
@@ -83,6 +95,9 @@ namespace DatingApp.API
                     }
                 });
             });
+
+            // Criando dados iniciais
+            //seeder.SeedUsers().GetAwaiter().GetResult();
 
             //app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin()
